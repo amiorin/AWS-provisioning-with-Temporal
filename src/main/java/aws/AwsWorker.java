@@ -6,6 +6,7 @@ import io.temporal.worker.Worker;
 import io.temporal.worker.WorkerFactory;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.ssm.SsmClient;
 
 public class AwsWorker {
     public static void main(String[] args) {
@@ -22,7 +23,8 @@ public class AwsWorker {
         // Activities are stateless and thread safe so a shared instance is used.
         Region region = Region.US_WEST_2;
         S3Client s3 = S3Client.builder().region(region).build();
-        worker.registerActivitiesImplementations(new AwsActivityImpl(s3));
+        SsmClient ssm = SsmClient.builder().region(region).build();
+        worker.registerActivitiesImplementations(new AwsActivityImpl(s3, ssm));
         // Start listening to the Task Queue.
         factory.start();
     }

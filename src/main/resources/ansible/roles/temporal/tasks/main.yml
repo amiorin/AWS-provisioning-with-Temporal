@@ -1,0 +1,7 @@
+---
+- debug: msg="Hello world!"
+
+- shell: whoami
+  register: usr
+
+- debug: var=usr.stdout
