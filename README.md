@@ -2,6 +2,8 @@
 
 This project is a POC. The goal is to use Temporal to provision Temporal on AWS.
 
+Demo https://youtu.be/g6U98jyP35Q
+
 ## Status
 The project is creating and deleting an S3 bucket.
 
